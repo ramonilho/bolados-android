@@ -1,0 +1,45 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Fullscreen" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Bolados">
+        <!--<item name="android:textColor">@color/colorText</item>-->
+    </style>
+
+    <style name="Bolados.Button">
+        <!--<item name="android:background">@drawable/custom_buttom</item>-->
+        <item name="android:textSize">@dimen/botao_tamanho_texto</item>
+    </style>
+
+    <style name="Bolados.LinearButton" parent="Bolados.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/buttonHeight</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Bolados.Header">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:padding">@dimen/padding_padrao</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:layout_marginBottom">@dimen/padding_padrao</item>
+        <item name="android:layout_marginTop">@dimen/padding_padrao</item>
+    </style>
+
+</resources>

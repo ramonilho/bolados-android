@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Atributos para quando pressionado -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/colorPrimaryDark"/>
+            <stroke android:width="@dimen/width_padrao_stroke_botao_customizado"
+                android:color="@color/colorPrimary"/>
+            <corners android:radius="@dimen/radius_padrao_botao_customizado"/>
+            <padding
+                android:left="@dimen/padding_padrao_botao_customizado"
+                android:right="@dimen/padding_padrao_botao_customizado"
+                android:top="@dimen/padding_padrao_botao_customizado"
+                android:bottom="@dimen/padding_padrao_botao_customizado"/>
+        </shape>
+    </item>
+    <!-- Atributos em outros estados -->
+    <item>
+        <shape>
+            <gradient android:startColor="@color/colorPrimaryDark"
+                android:endColor="@color/colorPrimary"
+                android:angle="270"/>
+            <stroke android:width="@dimen/width_padrao_stroke_botao_customizado"
+                android:color="@color/colorPrimary"/>
+            <corners android:radius="@dimen/radius_padrao_botao_customizado"/>
+            <padding
+                android:left="@dimen/padding_padrao_botao_customizado"
+                android:right="@dimen/padding_padrao_botao_customizado"
+                android:top="@dimen/padding_padrao_botao_customizado"
+                android:bottom="@dimen/padding_padrao_botao_customizado"/>
+        </shape>
+    </item>
+</selector>
