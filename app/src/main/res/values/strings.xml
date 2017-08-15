@@ -15,4 +15,16 @@
     <string name="send_mail">Enviar email</string>
     <string name="mocked_phone">(11) 3388-6407</string>
     <string name="mock_streetAddress">Rua teste\nSão Paulo - SP</string>
+    <string name="user_full_name">User Fullname</string>
+    <string name="edit_your_informations_below">Edit your informations below</string>
+    <string name="email">Email</string>
+    <string name="search_location">Search Location</string>
+    <string name="my_store_name">My store name</string>
+    <string name="save">Save</string>
+
+    <string-array name="store_categories">
+        <item>Cake</item>
+        <item>Party Snacks</item>
+        <item>Other</item>
+    </string-array>
 </resources>

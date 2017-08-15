@@ -25,11 +25,6 @@ import br.com.ramonilho.bolados.activity.HomeDetailActivity
 import com.google.gson.Gson
 
 
-/**
- * Created by ramonhonorio on 22/07/17.
- */
-
-
 class HomeFragment : Fragment(), View.OnClickListener {
 
     var storeAdapter: StoreAdapter? = null

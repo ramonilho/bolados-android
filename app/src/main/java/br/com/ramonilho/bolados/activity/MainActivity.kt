@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val homeFragment = HomeFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.content_main, homeFragment)
-//            transaction.addToBackStack(null)
             transaction.commit()
         } else if (id == R.id.nav_profile) {
 

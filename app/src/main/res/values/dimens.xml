@@ -15,4 +15,5 @@
     <dimen name="defaultPaddingx2">16dp</dimen>
     <dimen name="imagesHeight">100dp</dimen>
     <dimen name="buttonHeight">56dp</dimen>
+    <dimen name="subtitle1">15sp</dimen>
 </resources>
