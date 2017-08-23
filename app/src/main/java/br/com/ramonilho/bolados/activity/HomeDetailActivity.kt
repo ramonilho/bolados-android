@@ -24,7 +24,8 @@ class HomeDetailActivity : AppCompatActivity() {
         store = Gson().fromJson(jsonStore, Store::class.java)
 
         // Set ActionBar Title text
-        setTitle(store.name)
+//        setTitle(store.name)
+        title = getString(R.string.details)
 
         // Loading cell informations
         loadInfo()

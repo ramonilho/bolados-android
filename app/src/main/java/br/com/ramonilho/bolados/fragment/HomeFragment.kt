@@ -44,8 +44,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 myIntent.putExtra("store", jsonStore)
 
                 activity.startActivity(myIntent)
-
-//                Toast.makeText(inflater.context, item.name, Toast.LENGTH_SHORT).show()
             }
         })
 

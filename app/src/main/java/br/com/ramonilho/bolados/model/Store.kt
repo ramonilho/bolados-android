@@ -18,6 +18,9 @@ class Store {
     var priceAverage: Int? = 0
     var pictures: List<String>? = ArrayList()
 
+    // Owner
+    var userId: Int? = 0
+
     constructor()
 }
 

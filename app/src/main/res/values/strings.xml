@@ -12,19 +12,26 @@
     <string name="my_store">My Store</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
-    <string name="send_mail">Enviar email</string>
+    <string name="send_mail">Send email</string>
     <string name="mocked_phone">(11) 3388-6407</string>
-    <string name="mock_streetAddress">Rua teste\nSão Paulo - SP</string>
-    <string name="user_full_name">User Fullname</string>
+    <string name="mock_streetAddress">Random test, Av\nHarlem - NY</string>
+    <string name="user_full_name">Username</string>
     <string name="edit_your_informations_below">Edit your informations below</string>
     <string name="email">Email</string>
-    <string name="search_location">Search Location</string>
-    <string name="my_store_name">My store name</string>
+    <string name="search_location">Find Location</string>
+    <string name="my_store_name">Store name</string>
     <string name="save">Save</string>
-
-    <string-array name="store_categories">
-        <item>Cake</item>
-        <item>Party Snacks</item>
-        <item>Other</item>
-    </string-array>
+    <string name="rate_this_store">rate this store</string>
+    <string name="test_email">contact@email.com</string>
+    <string name="test_phone">(11) 3388-6407</string>
+    <string name="edit_store_info">Edit store information</string>
+    <string name="details">Details</string>
+    <string name="login_username">u s e r n a m e</string>
+    <string name="login_password">p a s s w o r d</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="signup_email">e m a i l</string>
+    <string name="signup_call_bolados">Find delicious stuff in a good price. Become Bolado right now!</string>
+    <string name="error_login_invalid">Invalid email or password.</string>
+    <string name="login_successful">Login successful</string>
 </resources>

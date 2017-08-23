@@ -24,8 +24,8 @@
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.HomeDetailActivity" />
-        <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.StoreActivity"></activity>
+        <activity android:name=".activity.EditStoreActivity" />
+        <activity android:name=".activity.LoginActivity"></activity>
     </application>
 
 </manifest>

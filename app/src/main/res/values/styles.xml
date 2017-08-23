@@ -16,6 +16,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Bolados">
@@ -33,11 +34,16 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <style name="Bolados.Button.Borderless">
+        <item name="android:tint">@color/colorPrimary</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
     <style name="Bolados.Header">
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:padding">@dimen/padding_padrao</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:layout_marginBottom">@dimen/padding_padrao</item>
         <item name="android:layout_marginTop">@dimen/padding_padrao</item>
     </style>
@@ -45,6 +51,37 @@
     <style name="Bolados.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Bolados.Subtitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Bolados.TextInputLayout">
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Widget.Design.TextInputLayout" parent="AppTheme">
+        <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="errorTextAppearance">@style/AppTheme.TextErrorAppearance</item>
+        <item name="counterTextAppearance">@style/TextAppearance.Design.Counter</item>
+        <item name="counterOverflowTextAppearance">@style/TextAppearance.Design.Counter.Overflow
+        </item>
+    </style>
+
+    <style name="AppTheme.TextFloatLabelAppearance" parent="TextAppearance.Design.Hint">
+        <!-- Floating label appearance here -->
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.TextErrorAppearance" parent="TextAppearance.Design.Error">
+        <!-- Error message appearance here -->
+        <item name="android:textColor">#ff0000</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

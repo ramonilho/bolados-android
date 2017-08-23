@@ -3,5 +3,7 @@
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#8BC34A</color>
-    <color name="colorTextDark">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="fbBlue">#3b5998</color>
 </resources>

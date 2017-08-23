@@ -27,7 +27,8 @@ class SplashActivity : android.support.v7.app.AppCompatActivity() {
 
         android.os.Handler().postDelayed({
             // Após o tempo definido irá executar a próxima tela
-            val intent = android.content.Intent(this@SplashActivity, MainActivity::class.java)
+//            val intent = android.content.Intent(this@SplashActivity, MainActivity::class.java)
+            val intent = android.content.Intent(this@SplashActivity, LoginActivity::class.java)
             intent.flags = android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION
             startActivity(intent)
 

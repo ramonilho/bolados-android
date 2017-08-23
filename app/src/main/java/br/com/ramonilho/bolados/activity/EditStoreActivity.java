@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import br.com.ramonilho.bolados.R;
 
-public class StoreActivity extends AppCompatActivity {
+public class EditStoreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store);
+        setContentView(R.layout.fragment_edit_store);
+
+        setTitle(getString(R.string.edit_store_info));
     }
 }
