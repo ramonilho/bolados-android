@@ -23,6 +23,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        etUsername.setText("ramon@email.com")
+        etPassword.setText("1234")
+
     }
 
     fun onLogin(view: View) {

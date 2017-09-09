@@ -101,13 +101,15 @@
                     android:id="@+id/btEmail"
                     style="@style/Bolados.LinearButton"
                     android:text="@string/send_mail"
-                    android:drawableLeft="@drawable/ic_mail"/>
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:onClick="sendEmail"/>
 
                 <Button
                     android:id="@+id/btPhone"
                     style="@style/Bolados.LinearButton"
                     tools:text="@string/mocked_phone"
-                    android:drawableLeft="@drawable/ic_call"/>
+                    android:drawableLeft="@drawable/ic_call"
+                    android:onClick="phoneCall"/>
 
 
             </LinearLayout>

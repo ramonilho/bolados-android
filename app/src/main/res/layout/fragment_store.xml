@@ -102,6 +102,7 @@
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,6 +116,7 @@
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/tvPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -128,7 +130,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/defaultPadding"
+                android:layout_marginBottom="@dimen/defaultPaddingx2">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -138,6 +142,7 @@
                     android:tint="@color/colorPrimaryDark" />
 
                 <TextView
+                    android:id="@+id/tvAddress"
                     style="@style/Bolados.Subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,33 +198,33 @@
             <!-- EndImages -->
 
             <!-- Ratings -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_star"
-                    android:tint="@color/colorPrimaryDark" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:src="@drawable/ic_star"-->
+                    <!--android:tint="@color/colorPrimaryDark" />-->
 
-                <TextView
-                    style="@style/Bolados.Subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Ratings" />
+                <!--<TextView-->
+                    <!--style="@style/Bolados.Subtitle"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="4"-->
+                    <!--android:text="Ratings" />-->
 
-                <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/rate_this_store"-->
-                <!--android:layout_weight="0"/>-->
+                <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="@string/rate_this_store"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_weight="0"/>&ndash;&gt;-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

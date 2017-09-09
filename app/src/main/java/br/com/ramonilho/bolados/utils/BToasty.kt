@@ -23,6 +23,4 @@ class BToasty {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
     }
-
-
 }

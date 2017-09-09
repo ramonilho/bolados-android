@@ -16,7 +16,7 @@ class Store {
     var phone: String? = null
     var rating: Double? = 0.0
     var priceAverage: Int? = 0
-    var pictures: List<String>? = ArrayList()
+    var pictures: List<String> = ArrayList()
 
     // Owner
     var userId: Int? = 0

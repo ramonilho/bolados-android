@@ -1,8 +1,11 @@
 package br.com.ramonilho.bolados.api
 
 import br.com.ramonilho.bolados.model.Store
+import br.com.ramonilho.bolados.model.User
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 /**
@@ -14,7 +17,9 @@ interface StoreAPI {
     @get:GET("/stores")
     val stores: Call<List<Store>>
 
-    @GET("/store/{id}")
-    fun store(@Path("{id}") id: Int): Call<Store>
+    @GET("/stores/{id}")
+    fun store(@Path("id") id: Int): Call<Store>
 
+    @PUT("/store")
+    fun editInfo(@Body Store: Store) : Call<Store>
 }

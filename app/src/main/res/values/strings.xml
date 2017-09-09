@@ -34,4 +34,13 @@
     <string name="signup_call_bolados">Find delicious stuff in a good price. Become Bolado right now!</string>
     <string name="error_login_invalid">Invalid email or password.</string>
     <string name="login_successful">Login successful</string>
+    <string name="profile_creationDate_description">Cake lover since</string>
+    <string name="mock_address">Amazing Test, 1004 5th Avenue</string>
+    <string name="no_address">Without address associated</string>
+    <string name="info_updated">Informations updated</string>
+    <string name="error_request">Request error</string>
+    <string name="changes_maded">Changes maded successfully</string>
+    <string name="email_subject">[BOLADOS] Contact about</string>
+    <string name="email_body">Hello...</string>
+    <string name="no_email_clients_installed">There are no email clients installed.</string>
 </resources>
