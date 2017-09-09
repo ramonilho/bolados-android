@@ -15,4 +15,7 @@ interface UserAPI {
     @PUT("/users")
     fun editInfo(@Body user: User) : Call<User>
 
+    @GET("/users/mocked")
+    fun mockedUser() : Call<User>
+
 }
