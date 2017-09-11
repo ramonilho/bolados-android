@@ -12,6 +12,7 @@
         android:gravity="center"
         android:text="@string/signup_call_bolados" />
 
+    <!--
     <ImageButton
         android:id="@+id/ibAddPhoto"
         style="@style/Bolados.Button.Colored"
@@ -21,6 +22,7 @@
         android:src="@drawable/ic_add_photo"
         android:tint="@color/white"
         android:layout_marginTop="@dimen/defaultPaddingx2"/>
+    -->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tipUsername"
@@ -69,6 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonHeight"
         android:layout_marginTop="@dimen/defaultPaddingx2"
-        android:text="@string/sign_up" />
+        android:text="@string/sign_up"
+        android:onClick="signup"/>
 
 </LinearLayout>

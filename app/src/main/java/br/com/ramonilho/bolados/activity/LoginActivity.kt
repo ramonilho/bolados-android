@@ -8,14 +8,20 @@ import android.view.View
 import br.com.ramonilho.bolados.R
 import br.com.ramonilho.bolados.api.APIUtils
 import br.com.ramonilho.bolados.model.MockUser
-import br.com.ramonilho.bolados.model.Store
 import br.com.ramonilho.bolados.model.User
 import br.com.ramonilho.bolados.utils.BToasty
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.facebook.AccessToken
+
+
 
 
 
@@ -23,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     
     private val FLAG_LOGIN_ACTIVITY = "LoginActivity"
     private var realm: Realm? = null
+    private var callbackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +38,28 @@ class LoginActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
 
         // If debugging
-//        etUsername.setText("ramon@email.com")
-//        etPassword.setText("1234")
         etUsername.setText("android")
         etPassword.setText("mobile")
 
-        val realmQuery = realm!!.where(MockUser::class.java)
-        val realmResults = realmQuery.findAll()
+        if (isLoggedInFacebook()) {
+            requestMockedUser()
+        } else {
+            callbackManager = CallbackManager.Factory.create()
+            btFbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult?) {
+                    BToasty.show(getString(R.string.login_successful), baseContext)
+                    requestMockedUser()
+                }
 
-        realmResults.map { result ->
-            Log.i(FLAG_LOGIN_ACTIVITY, "realm result: "+result.usuario+" || "+result.id)
+                override fun onCancel() {
+                    BToasty.show(getString(R.string.auth_failed), baseContext)
+                }
+
+                override fun onError(error: FacebookException?) {
+                    BToasty.show(getString(R.string.auth_failed), baseContext)
+                }
+
+            })
         }
 
     }
@@ -84,23 +103,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onSignup(view: View)  {
-        val storeAPI = APIUtils.storeAPIVersion
-
-        storeAPI.store(1).enqueue(object : Callback<Store> {
-            override fun onResponse(call: Call<Store>?, response: Response<Store>?) {
-                if (response!!.isSuccessful) {
-                    Log.i(FLAG_LOGIN_ACTIVITY, "Getted Store with success: "+response.body().name)
-                } else {
-                    Log.e(FLAG_LOGIN_ACTIVITY, "Authentication failed.")
-                    BToasty.toastErrorFrom(response.errorBody(), baseContext)
-                }
-            }
-
-            override fun onFailure(call: Call<Store>?, t: Throwable?) {
-                Log.e(FLAG_LOGIN_ACTIVITY, "Error while signing up user: " + t!!.localizedMessage)
-            }
-
-        })
+        Log.i(FLAG_LOGIN_ACTIVITY, "Hereeeee")
+        val intent = Intent(this@LoginActivity, SignupActivity::class.java)
+        startActivity(intent)
+//        val intent = Intent(this@LoginActivity, SignupActivity::class.java)
+//        startActivity(intent)
     }
 
 
@@ -148,6 +155,17 @@ class LoginActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager!!.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun isLoggedInFacebook(): Boolean {
+        val accessToken = AccessToken.getCurrentAccessToken()
+        return accessToken != null
     }
 
 }

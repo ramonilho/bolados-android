@@ -63,12 +63,18 @@
             android:onClick="onLogin"/>
     </LinearLayout>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/stay_connected"/>
 
-    <Button
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btFbLogin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonHeight"
-        android:text="CONTINUE WITH FACEBOOK"
-        android:backgroundTint="@color/fbBlue"
-        android:textColor="@color/white"/>
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"/>
 
 </LinearLayout>

@@ -59,6 +59,12 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
+    // Facebook
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+    // Google Maps
+    compile 'com.google.android.gms:play-services-maps:11.0.2'
+
     testCompile 'junit:junit:4.12'
 }
 repositories {

@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setFragment(R.string.my_store)
 
         } else if (id == R.id.nav_settings) {
-            setFragment(R.string.settings)
+            super.onBackPressed()
 
         } else if (id == R.id.nav_about) {
             setFragment(R.string.about)

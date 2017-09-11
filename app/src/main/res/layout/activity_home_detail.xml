@@ -163,7 +163,8 @@
                 android:id="@+id/btMap"
                 style="@style/Bolados.LinearButton"
                 android:drawableLeft="@drawable/ic_map_pin"
-                tools:text="@string/mock_streetAddress"/>
+                tools:text="@string/mock_streetAddress"
+                android:onClick="showMap"/>
 
         </LinearLayout>
 

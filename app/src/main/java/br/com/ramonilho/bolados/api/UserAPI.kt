@@ -18,4 +18,7 @@ interface UserAPI {
     @GET("/users/mocked")
     fun mockedUser() : Call<User>
 
+    @POST("/users")
+    fun signup(@Body user: User) : Call<User>
+
 }

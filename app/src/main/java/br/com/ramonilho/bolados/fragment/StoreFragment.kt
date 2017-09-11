@@ -41,11 +41,14 @@ class StoreFragment : Fragment(), View.OnClickListener {
                     } else {
                         Log.e("ProfileFragment", "Edit info failed.")
                         BToasty.toastErrorFrom(response.errorBody(), context)
+
+                        itemView.alpha = 0F
                     }
                 }
 
                 override fun onFailure(call: Call<Store>?, t: Throwable?) {
                     BToasty.show(getString(R.string.error_request), context)
+                    itemView.alpha = 0F
                 }
 
             })

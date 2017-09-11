@@ -47,7 +47,7 @@ class HomeDetailActivity : AppCompatActivity() {
         tvDescription.text = store.description.toString()
 
         btMap.text = store.addressName+"\n"+store.city
-        btEmail.text = store.email
+//        btEmail.text = store.email
         btPhone.text = store.phone
 
         // Store Logo
@@ -116,6 +116,14 @@ class HomeDetailActivity : AppCompatActivity() {
         } catch (ex: android.content.ActivityNotFoundException) {
             BToasty.show(getString(R.string.no_email_clients_installed), baseContext)
         }
+    }
+
+    fun showMap(view: View) {
+        val intent = Intent(this@HomeDetailActivity, MapsActivity::class.java)
+        intent.putExtra("latitude", store.latitude)
+        intent.putExtra("longitude", store.longitude)
+        intent.putExtra("storeName", store.name)
+        startActivity(intent)
     }
 
 }
