@@ -1,5 +1,6 @@
 package br.com.ramonilho.bolados.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -8,15 +9,38 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import br.com.ramonilho.bolados.R
-import br.com.ramonilho.bolados.fragment.HomeFragment
-import br.com.ramonilho.bolados.fragment.ProfileFragment
-import br.com.ramonilho.bolados.fragment.StoreFragment
+import br.com.ramonilho.bolados.utils.MapUtils
 import org.intellij.lang.annotations.Identifier
+import android.R.attr.data
+import android.app.Activity
+import br.com.ramonilho.bolados.fragment.*
+import br.com.ramonilho.bolados.model.Store
+import com.facebook.login.LoginManager
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
+import com.google.android.gms.location.places.ui.PlaceAutocomplete.getStatus
+import com.google.android.gms.location.places.Place
+import android.R.id.edit
+import android.content.Context
+import android.content.SharedPreferences
+import android.content.Context.MODE_PRIVATE
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
+
+
+class MainActivity : AppCompatActivity(),
+        NavigationView.OnNavigationItemSelectedListener,
+        StoreCreateFragment.OnCreateStoreListener,
+        StoreFragment.ShouldEditListener,
+        EditStoreActivity.OnEditedListener {
+
+    val FLAG_MAIN = "MainActivity"
+
+    lateinit var fragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +114,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setFragment(R.string.my_store)
 
         } else if (id == R.id.nav_settings) {
+            LoginManager.getInstance().logOut()
             super.onBackPressed()
 
         } else if (id == R.id.nav_about) {
@@ -102,22 +127,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setFragment(identifier: Int) {
-        val fragment: Fragment
 
         setTitle(identifier)
 
         when (identifier) {
             R.string.home -> fragment = HomeFragment()
             R.string.profile -> fragment = ProfileFragment()
-            R.string.my_store -> fragment = StoreFragment()
+            R.string.my_store -> fragment = StoreBaseFragment()
             R.string.settings -> fragment = HomeFragment()
             R.string.about -> fragment = HomeFragment()
             else -> fragment = HomeFragment()
         }
 
+        StoreBaseFragment()
+
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content_main, fragment)
         transaction.commit()
+    }
+
+    override fun onCreated(store: Store) {
+        Log.i(FLAG_MAIN, "onCreated")
+        setFragment(R.string.my_store)
+    }
+
+    override fun shouldEdit() {
+        Log.i(FLAG_MAIN, "shouldEdit")
+        val intent = Intent(this, EditStoreActivity::class.java)
+        startActivityForResult(intent, 123)
+    }
+
+    override fun onEdited(store: Store) {
+        Log.i(FLAG_MAIN, "onEdited")
+        setFragment(R.string.my_store)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 123) {
+            setFragment(R.string.my_store)
+        }
     }
 }
 

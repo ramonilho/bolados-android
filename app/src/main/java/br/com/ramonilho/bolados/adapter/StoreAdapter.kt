@@ -2,6 +2,7 @@ package br.com.ramonilho.bolados.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import br.com.ramonilho.bolados.R
 import br.com.ramonilho.bolados.api.APIUtils
@@ -47,12 +48,17 @@ class StoreAdapter(private var stores: List<Store>?, private val listener: OnIte
                 .into(holder.itemView.ivLogo)
 
         // Store ShowImage
-        Picasso.with(holder.itemView.context)
-                .load(APIUtils.BASE_URL + store.pictures!![1])
-                .placeholder(R.mipmap.ic_launcher)
-                .transform(RoundedCornersTransformation(10, 10))
-                .error(R.mipmap.ic_launcher)
-                .into(holder.itemView.ivShowcaseImage)
+        if (store!!.pictures.size > 0) {
+            Picasso.with(holder.itemView.context)
+                    .load(APIUtils.BASE_URL + store.pictures!![1])
+                    .placeholder(R.mipmap.ic_launcher)
+                    .transform(RoundedCornersTransformation(10, 10))
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.itemView.ivShowcaseImage)
+        } else {
+            holder.itemView.ivShowcaseImage.visibility = View.GONE
+        }
+
 
     }
 

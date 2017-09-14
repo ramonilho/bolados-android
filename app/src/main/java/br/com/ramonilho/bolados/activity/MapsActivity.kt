@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 import br.com.ramonilho.bolados.R
+import br.com.ramonilho.bolados.utils.MapUtils
 
 class MapsActivity : FragmentActivity(), OnMapReadyCallback {
 
@@ -36,10 +37,18 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         val storeName = intent.extras.getString("storeName", "Store")
+//        val shouldUseMark = intent.extras.getBoolean("shouldUseMark", false)
 
-        // Add a marker in store location and move the camera
-        mMap!!.addMarker(MarkerOptions().position(location!!).title(storeName))
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(location!!))
-        mMap!!.animateCamera(CameraUpdateFactory.zoomTo(16F), 2000, null)
+        if (MapUtils.shouldUseMark) {
+
+        } else {
+            // Add a marker in store location and move the camera
+            mMap!!.addMarker(MarkerOptions().position(location!!).title(storeName))
+            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(location!!))
+            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(16F), 2000, null)
+        }
+
+
+
     }
 }

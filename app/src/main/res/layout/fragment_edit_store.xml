@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:orientation="vertical">de
 
     <ScrollView
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone description"
-                    android:inputType="phone"/>
+                    android:inputType="phone" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -93,8 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:entries="@array/store_categories"
-                    />
+                    android:entries="@array/store_categories" />
 
             </LinearLayout>
 
@@ -111,19 +110,30 @@
                     android:layout_weight="2"
                     android:text="Address:" />
 
+                <!--
+                <TextView
+                    style="@style/Bolados.Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/mock_streetAddress" />
+                -->
+
                 <Button
                     android:id="@+id/btMap"
+                    style="@style/Bolados.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:drawableLeft="@drawable/ic_map_pin"
                     android:text="@string/search_location"
-                    style="@style/Bolados.Button.Colored"/>
+                    android:onClick="showAutocomplete"/>
+
 
             </LinearLayout>
 
-
-            <!--  -->
+            <!-- Showcase photos -->
+            <!--
             <TextView
                 style="@style/Bolados.Title"
                 android:layout_width="match_parent"
@@ -179,14 +189,15 @@
                     android:src="@drawable/ic_add_photo"
                     android:tint="@color/colorPrimary"/>
             </LinearLayout>
+            -->
 
             <Button
+                android:id="@+id/btSaveStore"
                 style="@style/Base.Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="@string/save"
-                android:onClick="saveChanges"/>
+                android:text="@string/save" />
         </LinearLayout>
 
     </ScrollView>

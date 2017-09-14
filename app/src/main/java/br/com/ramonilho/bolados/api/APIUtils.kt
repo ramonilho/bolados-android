@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object APIUtils {
 
     val MOCK_URL = "http://www.mocky.io/"
-    val BASE_URL = "http://10.0.0.106:3000"
-//    val BASE_URL = "http://172.16.71.141:3000"
+//    val BASE_URL = "http://10.0.0.106:3000"
+    val BASE_URL = "http://172.16.71.218:3000"
 
     val storeAPIVersion: StoreAPI
         get() = RetrofitClient.getClient(BASE_URL)!!.create(StoreAPI::class.java)

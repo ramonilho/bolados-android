@@ -3,10 +3,7 @@ package br.com.ramonilho.bolados.api
 import br.com.ramonilho.bolados.model.Store
 import br.com.ramonilho.bolados.model.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 /**
  * Created by ramonhonorio on 22/07/17.
@@ -20,6 +17,9 @@ interface StoreAPI {
     @GET("/stores/{id}")
     fun store(@Path("id") id: Int): Call<Store>
 
-    @PUT("/store")
+    @PUT("/stores")
     fun editInfo(@Body Store: Store) : Call<Store>
+
+    @POST("/stores")
+    fun create(@Body Store: Store) : Call<Store>
 }

@@ -1,14 +1,17 @@
 package br.com.ramonilho.bolados.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.ramonilho.bolados.R
 import br.com.ramonilho.bolados.activity.EditStoreActivity
+import br.com.ramonilho.bolados.activity.MainActivity
 import br.com.ramonilho.bolados.api.StoreAPI
 import kotlinx.android.synthetic.main.fragment_store.view.*
 import br.com.ramonilho.bolados.api.APIUtils
@@ -21,10 +24,15 @@ import retrofit2.Call
 import retrofit2.Response
 
 
-class StoreFragment : Fragment(), View.OnClickListener {
+class StoreFragment : Fragment(),
+        EditStoreActivity.OnEditedListener{
+
+    val FLAG_STORE_FRAG = "StoreBase"
 
     var storeAPI: StoreAPI? = APIUtils.storeAPIVersion
     var store = Store()
+    var currentFragment = 0
+
     lateinit var itemView: View
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -32,17 +40,29 @@ class StoreFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val itemView = inflater!!.inflate(R.layout.fragment_store, container, false)
 
+        Log.i(FLAG_STORE_FRAG, "parent: "+parentFragment)
+        Log.i(FLAG_STORE_FRAG, "parentFragActivity: "+parentFragment.activity)
+        Log.i(FLAG_STORE_FRAG, "fragActivity: "+activity)
+
+        onAttachToParentActivity(activity)
+
+        val supportFragment = childFragmentManager.beginTransaction()
+        val fragment: Fragment? = null
+
         if (User.shared.storeId != 0) {
             storeAPI!!.store(User.shared.storeId).enqueue(object : retrofit2.Callback<Store> {
                 override fun onResponse(call: Call<Store>?, response: Response<Store>?) {
                     if (response!!.isSuccessful) {
                         store = response.body()
                         updateFields()
+
+
                     } else {
                         Log.e("ProfileFragment", "Edit info failed.")
                         BToasty.toastErrorFrom(response.errorBody(), context)
 
                         itemView.alpha = 0F
+
                     }
                 }
 
@@ -57,8 +77,10 @@ class StoreFragment : Fragment(), View.OnClickListener {
         // Edit button action
         itemView.ibEditStore.setOnClickListener(View.OnClickListener {
 
-            val intent = Intent(activity, EditStoreActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this.activity, EditStoreActivity::class.java)
+//            startActivity(intent)
+
+            mEditedListener.shouldEdit()
 
         })
 
@@ -107,6 +129,27 @@ class StoreFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    override fun onClick(v: View) {}
+
+    override fun onEdited(store: Store) {
+        this.store = store
+        updateFields()
+    }
+
+    // Container Activity or Fragment must implement this interface
+    interface ShouldEditListener {
+        fun shouldEdit()
+    }
+
+    lateinit var mEditedListener: ShouldEditListener
+
+    // In the child activity.
+    fun onAttachToParentActivity(activity: Activity) {
+        try {
+            mEditedListener = activity as MainActivity
+        } catch (e: ClassCastException) {
+            throw ClassCastException(
+                    activity.toString() + " must implement OnCreateStoreListener")
+        }
+    }
 
 }

@@ -46,7 +46,12 @@ class HomeDetailActivity : AppCompatActivity() {
         tvRating.text = store.rating.toString()
         tvDescription.text = store.description.toString()
 
-        btMap.text = store.addressName+"\n"+store.city
+        if(store.city != null) {
+            btMap.text = store.addressName+"\n"+store.city
+        } else {
+            btMap.text = store.addressName
+        }
+
 //        btEmail.text = store.email
         btPhone.text = store.phone
 
@@ -59,23 +64,27 @@ class HomeDetailActivity : AppCompatActivity() {
                 .into(ivLogo)
 
         // Store ShowImage
-        Picasso.with(applicationContext)
-                .load(APIUtils.BASE_URL + store.pictures!![0])
-                .placeholder(R.mipmap.ic_launcher)
-                .fit().centerCrop()
-                .transform(RoundedCornersTransformation(10, 10))
-                .error(R.mipmap.ic_launcher)
-                .into(ivShowcaseImage1)
+        if (store.pictures!!.size > 1) {
+            Picasso.with(applicationContext)
+                    .load(APIUtils.BASE_URL + store.pictures!![0])
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fit().centerCrop()
+                    .transform(RoundedCornersTransformation(10, 10))
+                    .error(R.mipmap.ic_launcher)
+                    .into(ivShowcaseImage1)
+        }
 
-        Picasso.with(applicationContext)
-                .load(APIUtils.BASE_URL + store.pictures!![1])
-                .placeholder(R.mipmap.ic_launcher)
-                .fit().centerCrop()
-                .transform(RoundedCornersTransformation(10, 10))
-                .error(R.mipmap.ic_launcher)
-                .into(ivShowcaseImage2)
+        if (store.pictures!!.size > 1) {
+            Picasso.with(applicationContext)
+                    .load(APIUtils.BASE_URL + store.pictures!![1])
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fit().centerCrop()
+                    .transform(RoundedCornersTransformation(10, 10))
+                    .error(R.mipmap.ic_launcher)
+                    .into(ivShowcaseImage2)
+        }
 
-        if (store.pictures!!.count() > 2) {
+        if (store.pictures!!.size > 2) {
             Picasso.with(applicationContext)
                     .load(APIUtils.BASE_URL + store.pictures!![2])
                     .placeholder(R.mipmap.ic_launcher)
@@ -85,7 +94,8 @@ class HomeDetailActivity : AppCompatActivity() {
                     .into(ivShowcaseImage3)
         }
 
-        if (store.pictures!!.count() > 3) {
+
+        if (store.pictures!!.size > 3) {
             Picasso.with(applicationContext)
                     .load(APIUtils.BASE_URL + store.pictures!![3])
                     .placeholder(R.mipmap.ic_launcher)

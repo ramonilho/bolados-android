@@ -1,5 +1,6 @@
 package br.com.ramonilho.bolados.activity
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -41,6 +42,25 @@ class LoginActivity : AppCompatActivity() {
         etUsername.setText("android")
         etPassword.setText("mobile")
 
+        if (shouldStayConnected()) {
+            callbackManager = CallbackManager.Factory.create()
+            btFbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult?) {
+                    BToasty.show(getString(R.string.login_successful), baseContext)
+                    requestMockedUser()
+                }
+
+                override fun onCancel() {
+                    BToasty.show(getString(R.string.auth_failed), baseContext)
+                }
+
+                override fun onError(error: FacebookException?) {
+                    BToasty.show(getString(R.string.auth_failed), baseContext)
+                }
+
+            })
+        }
+
         if (isLoggedInFacebook()) {
             requestMockedUser()
         } else {
@@ -64,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    // Button actions
     fun onLogin(view: View) {
         if (this.checkOfflineLogin()) {
             requestMockedUser()
@@ -110,8 +131,7 @@ class LoginActivity : AppCompatActivity() {
 //        startActivity(intent)
     }
 
-
-    // MOCK checks:
+    // MOCK checks
     fun checkOfflineLogin () : Boolean {
         val realmResults = realm!!.where(MockUser::class.java).findAll()
 
@@ -125,6 +145,7 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
+    // Request
     fun requestMockedUser () {
         val userAPI = APIUtils.userAPIVersion
 
@@ -157,15 +178,31 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    // Activity Result
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         callbackManager!!.onActivityResult(requestCode, resultCode, data)
     }
 
+    // Facebook
     fun isLoggedInFacebook(): Boolean {
         val accessToken = AccessToken.getCurrentAccessToken()
         return accessToken != null
     }
+
+    // Shared Preferences
+    fun setConnection(stay: Boolean) {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("stayConnected", stay)
+        editor.commit()
+    }
+
+    fun shouldStayConnected() : Boolean {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("stayConnected", false)
+    }
+
 
 }
