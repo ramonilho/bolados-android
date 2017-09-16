@@ -85,11 +85,11 @@ class FavoritesFragment : Fragment(), View.OnClickListener{
             storeAdapter!!.update(stores)
 
             if (stores.isEmpty()) {
-                BToasty.show("No favorites where found", context)
+                BToasty.show(getString(R.string.no_favorites), context)
             }
 
         } else {
-            BToasty.show("No favorites where found", context)
+            BToasty.show(getString(R.string.no_favorites), context)
         }
 
     }

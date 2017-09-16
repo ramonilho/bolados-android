@@ -1,5 +1,6 @@
 package br.com.ramonilho.bolados.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -12,12 +13,20 @@ import br.com.ramonilho.bolados.api.UserAPI
 import br.com.ramonilho.bolados.model.User
 import br.com.ramonilho.bolados.utils.BDate
 import br.com.ramonilho.bolados.utils.BToasty
+import br.com.ramonilho.bolados.utils.MapUtils
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
+import com.google.android.gms.common.GooglePlayServicesRepairableException
+import com.google.android.gms.location.places.AutocompleteFilter
+import com.google.android.gms.location.places.Place
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
+import kotlinx.android.synthetic.main.fragment_edit_store.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileFragment : Fragment(), View.OnClickListener {
+class ProfileFragment : Fragment() {
 
     var userAPI: UserAPI = APIUtils.userAPIVersion
 
@@ -80,11 +89,41 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             })
         }
 
+        itemView.btMap.setOnClickListener {
+            try {
+                val autocompleteFilter = AutocompleteFilter.Builder()
+                        .setTypeFilter(Place.TYPE_COUNTRY)
+                        .setCountry("BR")
+                        .build()
+
+                val intent = PlaceAutocomplete
+                        .IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                        .setFilter(autocompleteFilter)
+                        .build(activity)
+
+                startActivityForResult(intent, MapUtils.PLACE_AUTOCOMPLETE_REQUEST_CODE)
+            } catch (e: GooglePlayServicesRepairableException) {
+                // TODO: Solucionar o erro.
+            } catch (e: GooglePlayServicesNotAvailableException) {
+                // TODO: Solucionar o erro.
+            }
+        }
+
         return itemView
     }
 
-    override fun onClick(v: View) {
-        Log.i("ProfileFragment", "OnClick called")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == MapUtils.PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+
+            val place = PlaceAutocomplete.getPlace(context, data)
+            User.shared.streetAddress = place.address.toString()
+
+            val ft = fragmentManager.beginTransaction()
+            ft.detach(this).attach(this).commit()
+
+        }
     }
 
 }

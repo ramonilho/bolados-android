@@ -80,7 +80,7 @@
             android:layout_height="100dp"
             android:gravity="center"
             android:layout_marginTop="@dimen/defaultPaddingx2"
-            android:text="Thanks for using this app!"
+            android:text="@string/thanks_for_using_this_app"
             android:textAlignment="center" />
 
         <TextView

@@ -125,7 +125,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimary"
                 android:onClick="onSave"
-                android:text="Save" />
+                android:text="@string/save" />
 
         </LinearLayout>
 

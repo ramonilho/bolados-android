@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bolados</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="facebook_app_id">124605474942543</string>
     <string name="fb_login_protocol_scheme">fb124605474942543</string>
@@ -9,15 +9,15 @@
     <string name="action_settings">Settings</string>
     <string name="home">Home</string>
     <string name="welcome_message">Welcome to Bolados app!</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
+    <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
     <string name="no_store">Don\'t have store</string>
     <string name="profile">Profile</string>
     <string name="my_store">My Store</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="send_mail">Send email</string>
-    <string name="mocked_phone">(11) 3388-6407</string>
-    <string name="mock_streetAddress">Random test, Av\nHarlem - NY</string>
+    <string name="mocked_phone" translatable="false">(11) 3388-6407</string>
+    <string name="mock_streetAddress" translatable="false">Random test, Av\nHarlem - NY</string>
     <string name="user_full_name">Username</string>
     <string name="edit_your_informations_below">Edit your informations below</string>
     <string name="email">Email</string>
@@ -25,11 +25,11 @@
     <string name="my_store_name">Store name</string>
     <string name="save">Save</string>
     <string name="rate_this_store">rate this store</string>
-    <string name="test_email">contact@email.com</string>
-    <string name="test_phone">(11) 3388-6407</string>
+    <string name="test_email" translatable="false">contact@email.com</string>
+    <string name="test_phone" translatable="false">(11) 3388-6407</string>
     <string name="edit_store_info">Edit store information</string>
     <string name="details">Details</string>
-    <string name="login_username">f u l l n a m e</string>
+    <string name="login_username">u s e r n a m e</string>
     <string name="login_password">p a s s w o r d</string>
     <string name="sign_up">Sign up</string>
     <string name="login">Login</string>
@@ -38,7 +38,7 @@
     <string name="error_login_invalid">Invalid email or password.</string>
     <string name="login_successful">Login successful</string>
     <string name="profile_creationDate_description">Cake lover since</string>
-    <string name="mock_address">Amazing Test, 1004 5th Avenue</string>
+    <string name="mock_address" translatable="false">Amazing Test, 1004 5th Avenue</string>
     <string name="no_address">Without address associated</string>
     <string name="info_updated">Informations updated</string>
     <string name="error_request">Request error</string>
@@ -62,4 +62,6 @@
     <string name="select_category">Select category</string>
     <string name="phone_number">Phone number</string>
     <string name="store_description">Store description</string>
+    <string name="thanks_for_using_this_app">Thanks for using this app!</string>
+    <string name="no_favorites">No favorites where found</string>
 </resources>

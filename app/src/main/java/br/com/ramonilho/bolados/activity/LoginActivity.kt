@@ -40,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
 
         // If debugging
-        etUsername.setText("android")
-        etPassword.setText("mobile")
+//        etUsername.setText("android")
+//        etPassword.setText("mobile")
 
         // Update checkbox
         val connected = shouldStayConnected()
