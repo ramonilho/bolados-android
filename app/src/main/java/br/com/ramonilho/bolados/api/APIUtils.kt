@@ -14,10 +14,10 @@ object APIUtils {
     val MOCK_URL = "http://www.mocky.io/"
 
     // Home IP
-    val BASE_URL = "http://10.0.0.106:3000"
+//    val BASE_URL = "http://10.0.0.106:3000"
 
     // Heroku - External
-//    val BASE_URL = "https://whispering-reaches-67306.herokuapp.com"
+    val BASE_URL = "https://whispering-reaches-67306.herokuapp.com"
 
     // FIAP random IPs
 //    val BASE_URL = "http://172.16.71.218:3000"
