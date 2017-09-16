@@ -1,7 +1,6 @@
 package br.com.ramonilho.bolados.fragment
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
@@ -17,7 +16,6 @@ import br.com.ramonilho.bolados.model.Store
 import br.com.ramonilho.bolados.model.User
 import br.com.ramonilho.bolados.utils.BToasty
 import br.com.ramonilho.bolados.utils.MapUtils
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
@@ -151,6 +149,7 @@ class StoreCreateFragment : Fragment() {
 
                     store = response.body()
                     User.shared.storeId = store.id!!
+                    Store.fromUser = store
 
                     if (mOnCreateStoreListener != null)
                         mOnCreateStoreListener.onCreated(store)

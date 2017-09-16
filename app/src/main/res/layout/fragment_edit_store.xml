@@ -40,7 +40,7 @@
                     android:id="@+id/etStoreDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Store description"
+                    android:hint="@string/store_description"
                     android:inputType="textMultiLine" />
 
             </android.support.design.widget.TextInputLayout>
@@ -55,7 +55,7 @@
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -70,7 +70,7 @@
                     android:id="@+id/etPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone description"
+                    android:hint="@string/phone_number"
                     android:inputType="phone" />
 
             </android.support.design.widget.TextInputLayout>
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Select category" />
+                    android:text="@string/select_category" />
 
                 <Spinner
                     android:id="@+id/spCategory"
@@ -97,40 +97,21 @@
 
             </LinearLayout>
 
-            <!-- Address -->
-            <LinearLayout
+            <TextView
+                style="@style/Bolados.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_your_address" />
+
+            <Button
+                android:id="@+id/btMap"
+                style="@style/Bolados.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/Bolados.Subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Address:" />
-
-                <!--
-                <TextView
-                    style="@style/Bolados.Subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/mock_streetAddress" />
-                -->
-
-                <Button
-                    android:id="@+id/btMap"
-                    style="@style/Bolados.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:drawableLeft="@drawable/ic_map_pin"
-                    android:text="@string/search_location"
-                    android:onClick="showAutocomplete"/>
-
-
-            </LinearLayout>
+                android:layout_weight="4"
+                android:drawableLeft="@drawable/ic_map_pin"
+                android:text="@string/search_location"
+                android:onClick="showAutocomplete"/>
 
             <!-- Showcase photos -->
             <!--
@@ -192,10 +173,11 @@
             -->
 
             <Button
+                android:layout_marginTop="10dp"
                 android:id="@+id/btSaveStore"
                 style="@style/Base.Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/buttonHeight"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/save" />
         </LinearLayout>

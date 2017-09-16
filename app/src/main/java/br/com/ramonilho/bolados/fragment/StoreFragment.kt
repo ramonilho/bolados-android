@@ -56,7 +56,6 @@ class StoreFragment : Fragment(),
                         store = response.body()
                         updateFields()
 
-
                     } else {
                         Log.e("ProfileFragment", "Edit info failed.")
                         BToasty.toastErrorFrom(response.errorBody(), context)

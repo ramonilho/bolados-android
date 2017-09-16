@@ -2,6 +2,7 @@ package br.com.ramonilho.bolados.activity
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -167,6 +168,7 @@ class EditStoreActivity : AppCompatActivity() {
             val geocoder = Geocoder(this, Locale.getDefault())
             val addresses = geocoder.getFromLocation(location!!.latitude, location!!.longitude, 1)
             store.city = addresses[0].getAddressLine(0)
+
         }
 
         if (location != null) {
@@ -188,7 +190,6 @@ class EditStoreActivity : AppCompatActivity() {
                     updateFields()
                     BToasty.show(getString(R.string.changes_maded), baseContext)
 
-//                    mOnEditedListener.onEdited(store)
                     setResult(0)
                     finish()
                 } else {
@@ -198,6 +199,21 @@ class EditStoreActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == MapUtils.PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+
+            val place = PlaceAutocomplete.getPlace(baseContext, data);
+
+//            BToasty.show(place.name.toString(), baseContext)
+
+            store.addressName = place.name.toString()
+            btMap.text = store.addressName
+
+        }
     }
 
     // Container Activity or Fragment must implement this interface

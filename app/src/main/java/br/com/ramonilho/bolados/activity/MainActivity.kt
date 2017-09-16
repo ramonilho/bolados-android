@@ -13,34 +13,26 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import br.com.ramonilho.bolados.R
-import br.com.ramonilho.bolados.utils.MapUtils
-import org.intellij.lang.annotations.Identifier
-import android.R.attr.data
-import android.app.Activity
 import br.com.ramonilho.bolados.fragment.*
 import br.com.ramonilho.bolados.model.Store
 import com.facebook.login.LoginManager
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
-import com.google.android.gms.location.places.ui.PlaceAutocomplete.getStatus
-import com.google.android.gms.location.places.Place
-import android.R.id.edit
-import android.content.Context
-import android.content.SharedPreferences
-import android.content.Context.MODE_PRIVATE
-
-
-
+import android.widget.TextView
+import br.com.ramonilho.bolados.api.APIUtils
+import br.com.ramonilho.bolados.model.User
+import retrofit2.Call
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
         StoreCreateFragment.OnCreateStoreListener,
         StoreFragment.ShouldEditListener,
-        EditStoreActivity.OnEditedListener {
+        EditStoreActivity.OnEditedListener{
 
     val FLAG_MAIN = "MainActivity"
 
     lateinit var fragment: Fragment
+    lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,18 +49,34 @@ class MainActivity : AppCompatActivity(),
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        val storeAPI = APIUtils.storeAPIVersion
+
+        if (User.shared.storeId != 0) {
+            storeAPI!!.store(User.shared.storeId).enqueue(object : retrofit2.Callback<Store> {
+                override fun onResponse(call: Call<Store>?, response: Response<Store>?) {
+                    if (response!!.isSuccessful) {
+                        Store.fromUser = response.body()
+                        updateHeader()
+                    } else {
+                        Log.e("MainActivity", "Info response failed.")
+                    }
+                }
+
+                override fun onFailure(call: Call<Store>?, t: Throwable?) {
+                    Log.e("MainActivity", "Edit info failed.")
+                }
+
+            })
+        }
+
         // NavigationView
-        val navigationView = findViewById(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
+        updateHeader()
 
         // ActionBar title
         setTitle(R.string.home)
 
-        // Open Home as FirstFragment
-        val homeFragment = HomeFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.content_main, homeFragment)
-        transaction.commit()
+        // Open Home as First Fragment
+        setFragment(R.string.home)
 
     }
 
@@ -77,7 +85,9 @@ class MainActivity : AppCompatActivity(),
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            // Send app to background instead of going back to login
+            super.moveTaskToBack(true)
+//            super.onBackPressed()
         }
     }
 
@@ -113,12 +123,14 @@ class MainActivity : AppCompatActivity(),
         } else if (id == R.id.nav_store) {
             setFragment(R.string.my_store)
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_signout) {
             LoginManager.getInstance().logOut()
             super.onBackPressed()
-
         } else if (id == R.id.nav_about) {
             setFragment(R.string.about)
+        }
+        else if (id == R.id.nav_favs) {
+            setFragment(R.string.favorites)
         }
 
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
@@ -133,13 +145,13 @@ class MainActivity : AppCompatActivity(),
         when (identifier) {
             R.string.home -> fragment = HomeFragment()
             R.string.profile -> fragment = ProfileFragment()
+            R.string.favorites -> fragment = FavoritesFragment()
             R.string.my_store -> fragment = StoreBaseFragment()
-            R.string.settings -> fragment = HomeFragment()
-            R.string.about -> fragment = HomeFragment()
+            R.string.about -> fragment = AboutFragment()
             else -> fragment = HomeFragment()
         }
 
-        StoreBaseFragment()
+        updateHeader()
 
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content_main, fragment)
@@ -167,6 +179,23 @@ class MainActivity : AppCompatActivity(),
 
         if (requestCode == 123) {
             setFragment(R.string.my_store)
+        } else if(requestCode == 321) {
+            setFragment(R.string.favorites)
+        }
+    }
+
+    fun updateHeader() {
+        navigationView = findViewById(R.id.nav_view) as NavigationView
+        navigationView.setNavigationItemSelectedListener(this)
+
+        val headerLayout = navigationView.getHeaderView(0)
+        val headerNameView = headerLayout.findViewById(R.id.navUserName) as TextView
+        headerNameView.text = User.shared.name
+        val hHasStore = headerLayout.findViewById(R.id.navStoreName) as TextView
+        if (Store.fromUser.id == 0) {
+            hHasStore.text = getString(R.string.doesnt_have_store)
+        } else {
+            hHasStore.text = Store.fromUser.name
         }
     }
 }

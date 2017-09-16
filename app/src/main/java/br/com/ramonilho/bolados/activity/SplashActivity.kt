@@ -22,19 +22,26 @@ class SplashActivity : android.support.v7.app.AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        try {
-            Realm.removeDefaultConfiguration()
-            Realm.init(baseContext)
+        // To ignore migration
+//        try {
+//            Realm.removeDefaultConfiguration()
+//            Realm.init(applicationContext)
+////
+//            val config = RealmConfiguration.Builder()
+//                    .deleteRealmIfMigrationNeeded()
+//                    .build()
+//            Realm.setDefaultConfiguration(config)
+//        } catch (exception: Exception) {
+//            Log.i(SPLASH_FLAG, "Realm already initialized")
+//        }
 
-            val config = RealmConfiguration.Builder()
-                    .deleteRealmIfMigrationNeeded()
-                    .build()
-            Realm.setDefaultConfiguration(config)
-        } catch (exception: Exception) {
-            Log.i(SPLASH_FLAG, "Realm already initialized")
-        }
-
+        // To init Realm
+        Realm.init(applicationContext)
         realm = Realm.getDefaultInstance()
+
+//        realm!!.beginTransaction()
+//        realm!!.deleteAll()
+//        realm!!.commitTransaction()
 
         // Executando o método que iniciará nossa animação
         loadAnimation()

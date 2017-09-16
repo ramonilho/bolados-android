@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     private val FLAG_LOGIN_ACTIVITY = "LoginActivity"
     private var realm: Realm? = null
     private var callbackManager: CallbackManager? = null
+    val userAPI = APIUtils.userAPIVersion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,60 +43,70 @@ class LoginActivity : AppCompatActivity() {
         etUsername.setText("android")
         etPassword.setText("mobile")
 
-        if (shouldStayConnected()) {
-            callbackManager = CallbackManager.Factory.create()
-            btFbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult?) {
-                    BToasty.show(getString(R.string.login_successful), baseContext)
-                    requestMockedUser()
-                }
+        // Update checkbox
+        val connected = shouldStayConnected()
+        cbStayConnected.isChecked = connected
 
-                override fun onCancel() {
-                    BToasty.show(getString(R.string.auth_failed), baseContext)
-                }
+        if (connected) {
+            val userId = getSavedUserId()
+            userAPI.getUser(userId).enqueue(object : Callback<User> {
+                override fun onResponse(call: Call<User>?, response: Response<User>?) {
+                    if (response!!.isSuccessful) {
+                        User.shared = response.body()
 
-                override fun onError(error: FacebookException?) {
-                    BToasty.show(getString(R.string.auth_failed), baseContext)
-                }
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
 
+                        BToasty.show(getString(R.string.login_successful), baseContext)
+                    } else {
+                        Log.e(FLAG_LOGIN_ACTIVITY, "Authentication failed.")
+                        BToasty.toastErrorFrom(response.errorBody(), baseContext)
+                    }
+                }
+                override fun onFailure(call: Call<User>?, t: Throwable?) {
+                    Log.e(FLAG_LOGIN_ACTIVITY, "Error while getting User: " + t!!.localizedMessage)
+                }
             })
-        }
-
-        if (isLoggedInFacebook()) {
-            requestMockedUser()
         } else {
-            callbackManager = CallbackManager.Factory.create()
-            btFbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult?) {
-                    BToasty.show(getString(R.string.login_successful), baseContext)
-                    requestMockedUser()
-                }
+            if (isLoggedInFacebook()) {
+                requestMockedUser()
+            } else {
+                callbackManager = CallbackManager.Factory.create()
+                btFbLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                    override fun onSuccess(result: LoginResult?) {
+                        BToasty.show(getString(R.string.login_successful), baseContext)
+                        requestMockedUser()
+                    }
 
-                override fun onCancel() {
-                    BToasty.show(getString(R.string.auth_failed), baseContext)
-                }
+                    override fun onCancel() {
+                        BToasty.show(getString(R.string.auth_failed), baseContext)
+                    }
 
-                override fun onError(error: FacebookException?) {
-                    BToasty.show(getString(R.string.auth_failed), baseContext)
-                }
+                    override fun onError(error: FacebookException?) {
+                        BToasty.show(getString(R.string.auth_failed), baseContext)
+                    }
 
-            })
+                })
+            }
         }
 
     }
 
     // Button actions
     fun onLogin(view: View) {
+        val stayConnected = cbStayConnected.isChecked
+        setConnection(stayConnected)
+
         if (this.checkOfflineLogin()) {
             requestMockedUser()
             return
         }
 
-        val userAPI = APIUtils.userAPIVersion
-
         // Getting text from editTexts
         val login = etUsername.text.toString()
         val password = etPassword.text.toString()
+
+
 
         userAPI.authenticate(login, password).enqueue(object : retrofit2.Callback<User> {
             override fun onResponse(call: Call<User>?, response: Response<User>?) {
@@ -104,6 +115,10 @@ class LoginActivity : AppCompatActivity() {
 
                     // Saving user into Singleton
                     User.shared = response.body()
+
+                    if (stayConnected) {
+                        saveUserId()
+                    }
 
                     // Instantiating a new activity
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -118,7 +133,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<User>?, t: Throwable?) {
-                Log.e(FLAG_LOGIN_ACTIVITY, "Error while getting User: " + t!!.localizedMessage)
+                Log.e(FLAG_LOGIN_ACTIVITY, "Error while getting Usler: " + t!!.localizedMessage)
             }
         })
     }
@@ -202,6 +217,18 @@ class LoginActivity : AppCompatActivity() {
     fun shouldStayConnected() : Boolean {
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
         return sharedPref.getBoolean("stayConnected", false)
+    }
+
+    fun saveUserId() {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putInt("userId", User.shared.id)
+        editor.commit()
+    }
+
+    fun getSavedUserId() : Int {
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref.getInt("userId", 0)
     }
 
 

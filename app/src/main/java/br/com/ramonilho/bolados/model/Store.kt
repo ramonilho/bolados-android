@@ -1,29 +1,64 @@
 package br.com.ramonilho.bolados.model
 
+import io.realm.RealmList
+import io.realm.RealmObject
+
 /**
  * Created by ramonhonorio on 22/07/17.
  */
 
 class Store {
-    var id: Int? = 0
-    var name: String? = null
-    var description: String? = null
-    var category: String? = null
-    var addressName: String? = null
-    var city: String? = null
-    var urlLogo: String? = null
-    var email: String? = null
-    var phone: String? = null
-    var rating: Double? = 0.0
-    var priceAverage: Int? = 0
+
+    var id: Int = 0
+    var name: String = ""
+    var description: String = ""
+    var category: String = ""
+    var addressName: String = ""
+    var city: String = ""
+    var urlLogo: String = ""
+    var email: String = ""
+    var phone: String = ""
+    var rating: Double = 0.0
+    var priceAverage: Int = 0
     var pictures: List<String> = ArrayList()
-    var latitude: Double? = 0.0
-    var longitude: Double? = 0.0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     // Owner
     var userId: Int? = 0
 
-    constructor()
+    companion object {
+        var fromUser: Store = Store()
+    }
+
+    fun favoriteObject() : Favorite {
+        var favorite = Favorite()
+
+        favorite.id = id
+        favorite.name = name
+        favorite.description = description
+        favorite.category = category
+        favorite.addressName = addressName
+        favorite.city = city
+        favorite.urlLogo = urlLogo
+        favorite.email = email
+        favorite.phone = phone
+        favorite.rating = rating
+        favorite.priceAverage = priceAverage
+        favorite.latitude = latitude
+        favorite.longitude = longitude
+
+//        var picList = RealmList<RealmString>()
+//        pictures.mapTo(picList) {
+//            val str = RealmString()
+//            str.value = it
+//            str
+//        }
+
+//        favorite.pictures = picList
+
+        return favorite
+    }
 }
 
 /*

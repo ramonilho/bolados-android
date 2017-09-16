@@ -13,15 +13,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/defaultPadding">
+            android:layout_margin="@dimen/defaultPadding"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,42 +32,42 @@
                     android:id="@+id/ivLogo"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
-                    tools:src="@mipmap/ic_launcher"
-                    android:layout_weight="1"
                     android:layout_margin="@dimen/defaultPadding"
-                    android:adjustViewBounds="true"/>
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    tools:src="@mipmap/ic_launcher" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_weight="3">
 
                     <TextView
                         android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Store name"
                         android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        tools:text="Store name" />
 
                     <TextView
                         android:id="@+id/tvCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Cakes"
                         android:layout_below="@+id/tvName"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        tools:text="Cakes" />
 
                     <TextView
                         android:id="@+id/tvPriceAverage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="• $$$"
                         android:layout_below="@+id/tvName"
                         android:layout_toRightOf="@id/tvCategory"
                         android:paddingLeft="5dp"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        tools:text="• $$$" />
 
                 </RelativeLayout>
 
@@ -76,12 +76,12 @@
                     android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    tools:text="3.4"
-                    android:layout_weight="0.5"
                     android:layout_margin="@dimen/defaultPadding"
+                    android:layout_weight="0.5"
                     android:gravity="center"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:text="3.4" />
 
             </LinearLayout>
 
@@ -89,8 +89,8 @@
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="@string/lorem_ipsum"
-                android:layout_margin="@dimen/defaultPadding"/>
+                android:layout_margin="@dimen/defaultPadding"
+                tools:text="@string/lorem_ipsum" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,19 +100,25 @@
                 <Button
                     android:id="@+id/btEmail"
                     style="@style/Bolados.LinearButton"
-                    android:text="@string/send_mail"
                     android:drawableLeft="@drawable/ic_mail"
-                    android:onClick="sendEmail"/>
+                    android:onClick="sendEmail"
+                    android:text="@string/send_mail" />
 
                 <Button
                     android:id="@+id/btPhone"
                     style="@style/Bolados.LinearButton"
-                    tools:text="@string/mocked_phone"
                     android:drawableLeft="@drawable/ic_call"
-                    android:onClick="phoneCall"/>
+                    android:onClick="phoneCall"
+                    tools:text="@string/mocked_phone" />
 
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btFavorite"
+                style="@style/Bolados.LinearButton"
+                android:drawableLeft="@drawable/ic_star"
+                android:text="@string/save_favorites" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,48 +129,47 @@
                     android:id="@+id/ivShowcaseImage1"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher"
                     android:layout_gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher" />
 
                 <ImageView
                     android:id="@+id/ivShowcaseImage2"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher"
                     android:layout_gravity="center"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher" />
             </LinearLayout>
 
-
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/imagesHeight"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivShowcaseImage3"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_gravity="center"
-                android:layout_weight="1"/>
+                android:layout_height="@dimen/imagesHeight"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/ivShowcaseImage4"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_gravity="center"
-                android:layout_weight="1"/>
+                <ImageView
+                    android:id="@+id/ivShowcaseImage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/ivShowcaseImage4"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/btMap"
                 style="@style/Bolados.LinearButton"
                 android:drawableLeft="@drawable/ic_map_pin"
-                tools:text="@string/mock_streetAddress"
-                android:onClick="showMap"/>
+                android:onClick="showMap"
+                tools:text="@string/mock_streetAddress" />
 
         </LinearLayout>
 

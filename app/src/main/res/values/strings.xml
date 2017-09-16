@@ -52,4 +52,14 @@
     <string name="serverDateFormat">yyyy-MM-dd</string>
     <string name="title_activity_maps">Map</string>
     <string name="failed_create_store">Failed while creating a new store</string>
+    <string name="doesnt_have_store">Doesn\'t have store</string>
+    <string name="signout">Signout</string>
+    <string name="favorites">Favorites</string>
+    <string name="save_favorites">Save to favorites</string>
+    <string name="remove_favorites">Remove from favorites</string>
+    <string name="developer_since_description">Cake lover since 21/04/1996</string>
+    <string name="select_your_address">Select your address</string>
+    <string name="select_category">Select category</string>
+    <string name="phone_number">Phone number</string>
+    <string name="store_description">Store description</string>
 </resources>

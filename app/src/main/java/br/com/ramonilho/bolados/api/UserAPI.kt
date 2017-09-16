@@ -12,6 +12,9 @@ interface UserAPI {
     @GET("/users")
     fun authenticate(@Header("email") email: String, @Header("password") password: String) : Call<User>
 
+    @GET("/users/u/{id}")
+    fun getUser(@Path("id") id: Int) : Call<User>
+
     @PUT("/users")
     fun editInfo(@Body user: User) : Call<User>
 

@@ -13,8 +13,8 @@ tools:context="br.com.ramonilho.bolados.activity.SplashActivity">
 
 <ImageView
     android:id="@+id/splash"
-    android:src="@mipmap/ic_launcher"
-    android:layout_width="150dp"
-    android:layout_height="150dp" />
+    android:src="@drawable/ic_bolados"
+    android:layout_width="300dp"
+    android:layout_height="300dp" />
 
 </RelativeLayout>
