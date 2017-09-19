@@ -51,7 +51,6 @@
     <string name="user_full_name">Nome</string>
     <string name="welcome_message">Bem-vindo ao Bolados!</string>
     <string name="serverDateFormat">yyyy-MM-dd</string>
-    <string name="fb_login_protocol_scheme">fb124605474942543</string>
     <string name="facebook_app_id">AIzaSyCw4HBlpJKckJXOxQu60T-DgpY6r7jTHFg</string>
     <string name="thanks_for_using_this_app">Obrigado por usar o app!</string>
     <string name="no_favorites">Não foram encontrados favoritos</string>

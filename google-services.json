@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "293470029977",
+    "firebase_url": "https://bolados-55f18.firebaseio.com",
+    "project_id": "bolados-55f18",
+    "storage_bucket": "bolados-55f18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293470029977:android:b406b7d323c5fe52",
+        "android_client_info": {
+          "package_name": "br.com.ramonilho.bolados"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293470029977-54tuf3in86ilagqn2d8m919dd88esnvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ramonilho.bolados",
+            "certificate_hash": "982708b1bb36a13a4c2df5b5b6de97af19a539a3"
+          }
+        },
+        {
+          "client_id": "293470029977-s6da7quq6d76osiu93p9j123lprvcauj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChrRfUlRw6TTUIyZZp_x7DPaERR2mGqN4"
+        },
+        {
+          "current_key": "AIzaSyCnl1XHf-WxREEOFZoOXafBbvqN1VX6xvA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293470029977-s6da7quq6d76osiu93p9j123lprvcauj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
